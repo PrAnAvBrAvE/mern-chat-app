@@ -39,8 +39,31 @@ To run the application locally, follow these steps:
    git clone https://github.com/yourusername/chat-application.git
    cd chat-application
 2. Navigate to the server directory and install the backend dependencies:
-  ```
-  cd server
-  npm install
+   ```
+   cd server
+   npm install
 
 3. Navigate to the client directory and install the frontend dependencies:
+    ```
+    cd ../client
+    npm install
+
+5. Start the backend server:
+   ```
+    cd ../server
+    npm start
+
+6. Start the frontend development server:
+   ```
+   cd ../client
+   npm start
+
+Now, you can access the application at http://localhost:3000.
+
+## Usage
+Navigate to the login page.
+Sign up or log in to your account.
+Start chatting with friends!
+
+## Contributing
+Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
