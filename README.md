@@ -37,7 +37,8 @@ To run the application locally, follow these steps:
 1. Clone the repository:
    ```
    git clone https://github.com/yourusername/chat-application.git
-   cd chat-application ```
+   cd chat-application
+   ```
 2. Navigate to the server directory and install the backend dependencies:
    ```
   cd server
