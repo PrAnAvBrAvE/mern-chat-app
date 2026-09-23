@@ -33,7 +33,7 @@ const SignUp = () => {
                     Sign Up <span className='text-blue-500'> ChatApp</span>
                 </h1>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} autoComplete='off'>
                     <div>
                         <label className='label p-2'>
                             <span className='text-base label-text'>Full Name</span>
@@ -48,7 +48,7 @@ const SignUp = () => {
                         <label className='label p-2 '>
                             <span className='text-base label-text'>Username</span>
                         </label>
-                        <input type='text' placeholder='pranavpatil' className='w-full input input-bordered h-10'
+                        <input type='text' placeholder='pranavpatil' autoComplete='off' className='w-full input input-bordered h-10'
                             value={inputs.username}
                             onChange={(e) => setInputs({...inputs, username: e.target.value})}
                         />
@@ -61,6 +61,7 @@ const SignUp = () => {
                         <input
                             type='password'
                             placeholder='Enter Password'
+                            autoComplete='new-password'
                             className='w-full input input-bordered h-10'
                             value={inputs.password}
                             onChange={(e) => setInputs({...inputs, password: e.target.value})}
@@ -74,6 +75,7 @@ const SignUp = () => {
                         <input
                             type='password'
                             placeholder='Confirm Password'
+                            autoComplete='new-password'
                             className='w-full input input-bordered h-10'
                             value={inputs.confirmPassword}
                             onChange={(e) => setInputs({...inputs, confirmPassword: e.target.value})}
