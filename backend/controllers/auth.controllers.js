@@ -5,12 +5,17 @@ import generateTokenAndSetCookie from "../utils/generateToken.js";
 export const signup = async (req, res) => {
     try {
         const {fullName, username, password, confirmPassword, gender} = req.body;
+        const normalizedUsername = username?.trim().toLowerCase();
+
+        if(!normalizedUsername){
+            return res.status(400).json({error:"Username is required"})
+        }
 
         if(password !== confirmPassword){
             return res.status(400).json({error:"Passwords don't match"})
         }
 
-        const user = await User.findOne({username})
+        const user = await User.findOne({username: normalizedUsername})
 
         if(user){
             return res.status(400).json({error:"Username already exists"})
@@ -29,7 +34,7 @@ export const signup = async (req, res) => {
 
         const newUser = new User({
             fullName,
-            username,
+            username: normalizedUsername,
             password: hashedPassword,
             gender,
             profilepic: profilePic
@@ -55,6 +60,9 @@ export const signup = async (req, res) => {
                 
     } catch (error) {
         console.log('Error in signup controller',error.message)
+        if(error.code === 11000){
+            return res.status(400).json({error:"Username already exists"})
+        }
         res.status(500).json({error:'Internal Server Error'})
     }
 }
@@ -62,7 +70,8 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const {username, password} = req.body;
-        const user = await User.findOne({username});
+        const normalizedUsername = username?.trim().toLowerCase();
+        const user = await User.findOne({username: normalizedUsername});
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
         if(!user || !isPasswordCorrect){
